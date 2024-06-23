@@ -1,0 +1,73 @@
+<renderingStyle name="LightRS Chasing" depends="LightRS" defaultColor="#ffffff" version="1">
+
+	<renderingConstant name="lowIntegrityRoadColor" value="#ff00ff"/>
+	<renderingConstant name="unpavedRoadColor" value="#777777"/>
+
+	<renderingAttribute name="trunkRoadColor"> <!-- super-2 or 4-lane non-interstate -->
+		<case additional="lanes=2" attrColorValue="#ff00ff"/> <!-- TODO: this doesn't seem to work -->
+	</renderingAttribute>
+
+	<renderingAttribute name="primaryRoadColor"> <!-- US Highways -->
+		<!-- Match primary highway zoom-level visibility with secondary highways -->
+		<case maxzoom="10" attrColorValue="#ffffff"/>
+	</renderingAttribute>
+
+	<!-- osmand_highway_integrity only available for zoom level 11+ -->
+	<renderingAttribute name="secondaryRoadColor"> <!-- State Highways -->
+		<!-- Don't show secondary highways when zoomed out as highway integrity tag isn't available until zoom 11+ -->
+		<!-- TODO skip rendering rather than render in white but I don't know how to do that -->
+		<case maxzoom="10" attrColorValue="#ffffff"/>
+
+		<case additional="osmand_highway_integrity=0" attrColorValue="#ff5400"/>
+		<case additional="osmand_highway_integrity=1" attrColorValue="#ff5400"/>
+		<case additional="osmand_highway_integrity=2" attrColorValue="$unpavedRoadColor"/> <!-- compacted -->
+		<case additional="osmand_highway_integrity=3" attrColorValue="$unpavedRoadColor"/>
+    <case additional="osmand_highway_integrity=4" attrColorValue="$unpavedRoadColor"/> <!-- gravel, unpaved -->
+		<case additional="osmand_highway_integrity=5" attrColorValue="$lowIntegrityRoadColor"/>
+		<case additional="osmand_highway_integrity=6" attrColorValue="$lowIntegrityRoadColor"/>
+		<case additional="osmand_highway_integrity=7" attrColorValue="$lowIntegrityRoadColor"/>
+		<case additional="osmand_highway_integrity=8" attrColorValue="$lowIntegrityRoadColor"/>
+		<case additional="osmand_highway_integrity=9" attrColorValue="$lowIntegrityRoadColor"/>
+		<case additional="osmand_highway_integrity=10" attrColorValue="$lowIntegrityRoadColor"/>
+		<case attrColorValue="#ffffff" shadowRadius="1" shadowColor="#000000"/> <!-- untagged! -->
+	</renderingAttribute>
+
+	<renderingAttribute name="tertiaryRoadColor"> <!-- County or gravel roads -->
+		<case additional="osmand_highway_integrity=0" attrColorValue="#ff7800"/>
+		<case additional="osmand_highway_integrity=1" attrColorValue="#ff7800"/>
+		<case additional="osmand_highway_integrity=2" attrColorValue="$unpavedRoadColor"/> <!-- compacted -->
+		<case additional="osmand_highway_integrity=3" attrColorValue="$unpavedRoadColor"/>
+    <case additional="osmand_highway_integrity=4" attrColorValue="$unpavedRoadColor"/> <!-- gravel, unpaved -->
+		<case additional="osmand_highway_integrity=5" attrColorValue="$lowIntegrityRoadColor"/>
+		<case additional="osmand_highway_integrity=6" attrColorValue="$lowIntegrityRoadColor"/>
+		<case additional="osmand_highway_integrity=7" attrColorValue="$lowIntegrityRoadColor"/>
+		<case additional="osmand_highway_integrity=8" attrColorValue="$lowIntegrityRoadColor"/>
+		<case additional="osmand_highway_integrity=9" attrColorValue="$lowIntegrityRoadColor"/>
+		<case additional="osmand_highway_integrity=10" attrColorValue="$lowIntegrityRoadColor"/>
+		<case attrColorValue="#ffffff" shadowRadius="1" shadowColor="#000000"/> <!-- untagged! -->
+	</renderingAttribute>
+
+	<renderingAttribute name="residentialRoadColor"> <!-- includes unclassified roads -->
+		<case additional="osmand_highway_integrity=0" attrColorValue="#ff7800"/>
+		<case additional="osmand_highway_integrity=1" attrColorValue="#ff7800"/>
+		<case additional="osmand_highway_integrity=2" attrColorValue="$unpavedRoadColor"/> <!-- compacted -->
+		<case additional="osmand_highway_integrity=3" attrColorValue="$unpavedRoadColor"/>
+    <case additional="osmand_highway_integrity=4" attrColorValue="$unpavedRoadColor"/> <!-- gravel, unpaved -->
+		<case additional="osmand_highway_integrity=5" attrColorValue="$lowIntegrityRoadColor"/>
+		<case additional="osmand_highway_integrity=6" attrColorValue="$lowIntegrityRoadColor"/>
+		<case additional="osmand_highway_integrity=7" attrColorValue="$lowIntegrityRoadColor"/>
+		<case additional="osmand_highway_integrity=8" attrColorValue="$lowIntegrityRoadColor"/>
+		<case additional="osmand_highway_integrity=9" attrColorValue="$lowIntegrityRoadColor"/>
+		<case additional="osmand_highway_integrity=10" attrColorValue="$lowIntegrityRoadColor"/>
+		<case attrColorValue="$unpavedRoadColor"/> <!-- untagged! No special color here as it's very unlikely that an untagged, unclassified highway is paved -->
+	</renderingAttribute>
+
+  <line>
+		<switch> <!-- Hide railway until zoom 13+ since they can look like roads below that zoom level -->
+			<case maxzoom="12" tag="railway" value="rail">
+				<apply color="#ffffff" color_2="#ffffff"/>
+			</case>
+		</switch>
+  </line>
+
+</renderingStyle>
