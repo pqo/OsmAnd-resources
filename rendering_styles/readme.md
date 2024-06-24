@@ -10,6 +10,7 @@ Rendering styles
 **Special:**
 * **skimap.render.xml :** <br>Style for skiing. Key features: renders pistes, aerial ways and other ski features in a convenient way. Less distracting secondary map objects. (Android/iOS, depends on default.)
 * **nautical.render.xml :** <br>Style for marine and river navigation. Key features: buoys, lighthouses, water navigation lines and marks, harbours, seamark services, depth contours. (Android/iOS, depends on default.) 
+* **stormchasing.render.xml :** <br>Style for storm chasing. Key features: Roads are rendered in bright colors for daytime readability. Roads with low surface integrity (gravel, dirt) are rendered in gray color across zoom levels and road types. Primary, secondary, and tertiary road types are rendered starting at the same zoom level for fast repositioning around a storm. Local road types are rendered at the next zoom level for interception. Roads without surface integrity information are easily identified in a hollow rendering style to encourage user contributions to the underlying OSM data. (tested on Android, depends on LightRS.) 
 
 **Examples and deprecated:**
 * **standalone-template.render.xml :** Template for a standalone style.
